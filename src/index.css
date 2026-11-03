@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: auto; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: #EEECE4;
+  color: #1B332D;
+  font-family: 'Manrope', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+main > section,
+footer {
+  background-color: rgba(7, 13, 11, 0.22) !important;
+  background-image: none !important;
+  animation: none;
+}
+
+.ambient-video {
+  transform: scale(1.03);
+  transition: opacity 3.5s ease-in-out;
+  animation: ambient-video-drift 30s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-video-drift {
+  from { transform: scale(1.03); }
+  to { transform: scale(1.08); }
+}
+html[lang='ar'] body, html[lang='ar'] button, html[lang='ar'] input, html[lang='ar'] textarea {
+  font-family: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', system-ui, sans-serif;
+  letter-spacing: 0 !important;
+}
+::selection { background: #89672F; color: #fff; }
+
+/* Keep interaction feedback consistent throughout the long-form page. */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid #C6A260;
+  outline-offset: 4px;
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  a, button { transition-timing-function: cubic-bezier(.22, 1, .36, 1); }
+}
+
+.glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.16); }
+.outline-text { -webkit-text-stroke: 1.5px rgba(255,255,255,0.35); color: transparent; }
+.outline-text-dark { -webkit-text-stroke: 1.5px rgba(18,61,50,0.25); color: transparent; }
+.grain::after { content:''; position:absolute; inset:0; pointer-events:none; opacity:.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (pointer: fine) { .cursor-ring { display: block; } }
+@media (prefers-reduced-motion: reduce) {
+  main > section, footer { animation: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
