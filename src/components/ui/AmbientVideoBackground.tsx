@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useReducedMotion } from 'framer-motion'
 
 const backgroundVideo = '/images/ebc-background-animated.mp4'
